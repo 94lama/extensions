@@ -130,16 +130,16 @@ export default function (pi: ExtensionAPI) {
   pi.on('input', async (event, ctx) => {
     const parsedInput = parseInput(event.text);
 
-    if (!parsedInput) {
+    if (!parsedInput?.command.startsWith(':')) {
       return { action: 'continue' };
     }
 
     try {
       switch (parsedInput.command) {
-        case 'read':
+        case ':read':
           await openAndRead(parsedInput.filePath, parsedInput.options);
           return { action: 'handled' };
-        case 'edit':
+        case ':edit':
           await openAndEdit(parsedInput.filePath, parsedInput.options);
           return { action: 'handled' };
         default:
