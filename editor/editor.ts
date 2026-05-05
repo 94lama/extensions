@@ -55,7 +55,7 @@ function parseInput(userText: string): ParsedInput | null {
 async function openAndRead(filePath: string, options: string[] = []): Promise<void> {
   const childProcessModule = 'node:child_process';
   const { spawn } = await import(childProcessModule);
-  const scriptPath = decodeURIComponent(new URL('./editor/read.sh', import.meta.url).pathname);
+  const scriptPath = decodeURIComponent(new URL('./read.sh', import.meta.url).pathname);
   const settings = await getSettings();
   const readerTool = settings.readerTool?.trim() || 'batcat';
   const useRemoteSession = options.includes('remote') || options.includes('--remote');
@@ -92,7 +92,7 @@ async function openAndRead(filePath: string, options: string[] = []): Promise<vo
 async function openAndEdit(filePath: string, options: string[] = []): Promise<void> {
   const childProcessModule = 'node:child_process';
   const { spawn } = await import(childProcessModule);
-  const scriptPath = decodeURIComponent(new URL('./editor/edit.sh', import.meta.url).pathname);
+  const scriptPath = decodeURIComponent(new URL('./edit.sh', import.meta.url).pathname);
   const settings = await getSettings();
   const editorTool = settings.editorTool?.trim() || 'nvim';
   const useRemoteSession = options.includes('remote') || options.includes('--remote');
