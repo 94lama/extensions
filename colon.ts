@@ -37,12 +37,11 @@ export default function (pi: ExtensionAPI) {
     const input = parseInput(event.text || '');
     if (input?.command && input.command.startsWith(":")) {
       const [command, ...args] = input.command.slice(1).split(/\s+/);
-      let modulePath: string | null = null;
 
       if (['diy', 'minipi'].includes(command)) {
-        return import('./miniPi.ts').then(module => module.default(pi));
+        return import('./colon/miniPi.ts').then(module => module.default(pi));
       } else if (['read', 'edit'].includes(command)) {
-        return import('./editor/editor.ts').then(module => module.default(pi));
+        return import('./colon/editor/editor.ts').then(module => module.default(pi));
       } else return { action: 'error', response: `Unknown command: ${command}` };
 
     } else return { action: 'continue' };
